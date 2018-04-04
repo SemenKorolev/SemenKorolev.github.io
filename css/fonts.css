@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'AgencyFBCyrillic';
+  src: url("../fonts/AgencyFBCyrillic/AgencyFBCyrillic.eot");
+  src: url("../fonts/AgencyFBCyrillic/AgencyFBCyrillic.eot?#iefix") format("embedded-opentype"), url("../fonts/AgencyFBCyrillic/AgencyFBCyrillic.woff") format("woff"), url("../fonts/AgencyFBCyrillic/AgencyFBCyrillic.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: 'OcrOnectt';
+  src: url("../fonts/OcrOnectt/OcrOnectt.eot");
+  src: url("../fonts/OcrOnectt/OcrOnectt.eot?#iefix") format("embedded-opentype"), url("../fonts/OcrOnectt/OcrOnectt.woff") format("woff"), url("../fonts/OcrOnectt/OcrOnectt.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: 'OldTyperNrRegular';
+  src: url("../fonts/OldTyperNrRegular/OldTyperNrRegular.eot");
+  src: url("../fonts/OldTyperNrRegular/OldTyperNrRegular.eot?#iefix") format("embedded-opentype"), url("../fonts/OldTyperTitulnr/OldTyperNrRegular.woff") format("woff"), url("../fonts/OldTyperNrRegular/OldTyperNrRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal; }

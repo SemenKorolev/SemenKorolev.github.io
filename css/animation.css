@@ -1,0 +1,38 @@
+@-webkit-keyframes flash {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  10% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  40% {
+    -webkit-border-radius: 10em;
+            border-radius: 10em; }
+  60% {
+    -webkit-border-radius: 10em;
+            border-radius: 10em; }
+  90% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); } }
+@keyframes flash {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  10% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  40% {
+    -webkit-border-radius: 10em;
+            border-radius: 10em; }
+  60% {
+    -webkit-border-radius: 10em;
+            border-radius: 10em; }
+  90% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); } }

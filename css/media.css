@@ -1,0 +1,16 @@
+/*==========  Desktop First Method  ==========*/
+@media only screen and (max-width: 480px) {
+  .filter_items {
+    padding: 10px 5px 0; }
+  .filter_label {
+    margin: 0 3px 10px; }
+  .inside .content {
+    padding: 50px 5% 40px; }
+  .header_content img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 20px; }
+  .form_contacts form {
+    padding: 15px; }
+  .gallery a {
+    margin: 5px 0 0 3px; } }
