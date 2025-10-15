@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Подарочная карта SOKOLOV — 5 000 ₽</title>
+  <!-- шрифт и иконки, как в дизайн‑системе -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+  /* Цвета и радиусы — из дизайн‑системы */
+  :root{
+    --primary-dark:#064495;
+    --primary-blue:#1977DE;
+    --support-blue:#BFDBFF;
+    --accent-cyan:#4ECDC4;
+    --accent-red:#FF6B6B;
+    --accent-yellow:#FFD93D;
+    --neutral-bg:#fafafa;
+    --neutral-bg-secondary:#ffffff;
+    --neutral-bg-accent:#f8f9fa;
+    --text-gray:#666666;
+    --text-light:#ffffff;
+    --radius-sm:8px;
+    --radius-md:12px;
+    --radius-lg:20px;
+    --shadow-md:0 8px 24px rgba(2,8,23,.15);
+  }
+  /* База как в system.html */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Helvetica Neue",sans-serif;
+    background:var(--neutral-bg);
+    color:#222; line-height:1.6;
+  }
+  a{color:#0ea5e9;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .page{
+    max-width:1100px; margin:auto; padding:24px;
+    display:grid; gap:24px;
+  }
+  header{
+    background:var(--neutral-bg-secondary);
+    border-radius:var(--radius-lg);
+    box-shadow:0 6px 16px rgba(0,0,0,.05);
+    padding:22px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  header h1{color:var(--primary-dark);font-weight:800;font-size:clamp(22px,2.6vw,30px)}
+  .badge{
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary-blue));
+    color:#fff; padding:.55rem .9rem; border-radius:999px; font-weight:700;
+    box-shadow:0 10px 22px rgba(6,68,149,.25);
+    white-space:nowrap;
+  }
+  /* Сцена + фон */
+  .stage{
+    position:relative; overflow:hidden;
+    border-radius:var(--radius-lg);
+    background:var(--neutral-bg-secondary);
+    box-shadow:0 6px 16px rgba(0,0,0,.05);
+    padding: clamp(14px, 3vw, 26px);
+  }
+  .bg{
+    position:absolute; inset:0; pointer-events:none; filter:blur(26px) saturate(120%);
+    opacity:.9;
+  }
+  .bg svg{width:100%;height:100%}
+  /* Банковская карта - адаптивный размер */
+  .card{
+    position:relative; z-index:1;
+    width:min(100%, 680px);
+    aspect-ratio:16/9;
+    margin:auto;
+    border-radius:22px;
+    background:
+      radial-gradient(160% 160% at -10% -10%, rgba(255,255,255,.55) 0%, rgba(255,255,255,.05) 40%, transparent 60%),
+      linear-gradient(135deg,#f8fbff,#eef1ff 25%,#e8e3ff 50%,#f6e7ff 75%,#f3fbff 100%);
+    box-shadow: var(--shadow-md);
+    border:1px solid rgba(255,255,255,.6);
+    display:grid; grid-template-rows:auto 1fr auto;
+    padding:clamp(16px,2.4vw,28px);
+    overflow:hidden;
+  }
+  /* Увеличиваем высоту карты на мобильных */
+  @media (max-width: 768px) {
+    .card {
+	height:300px;
+      aspect-ratio: 16/10; /* увеличена высота для лучшей видимости */
+      width: min(100%, 400px);
+      padding: clamp(20px, 4vw, 28px);
+    }
+    .card-bottom {
+      margin-top: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .number {
+      font-size: clamp(16px, 2.8vw, 24px);
+    }
+    .pin {
+      font-size: clamp(13px, 2vw, 16px);
+    }
+  }
+  @media (min-width: 1200px) {
+    .card {
+      width: min(100%, 600px);
+    }
+  }
+  .card:after{
+    content:""; position:absolute; inset:0; border-radius:inherit; mix-blend-mode:overlay;
+    background:linear-gradient(60deg,rgba(124,58,237,.2),rgba(6,182,212,.25));
+    pointer-events:none;
+  }
+  .card-top{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .brand{font-weight:800; letter-spacing:6px; color:#111827; font-size:clamp(18px,2.2vw,24px)}
+  .chip{width:54px;height:38px;border-radius:8px;background:linear-gradient(#CDBA8E,#B29258);
+        box-shadow:inset 0 0 0 2px rgba(0,0,0,.2)}
+  .card-center{display:grid; align-content:center; gap:10px}
+  .amount{font-size:clamp(26px,4vw,40px); font-weight:800}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 14px;color:var(--text-gray);font-weight:700}
+  .meta span{background:rgba(255,255,255,.75);padding:6px 10px;border-radius:10px;border:1px solid rgba(17,24,39,.06)}
+  .card-bottom{display:flex; align-items:end; justify-content:space-between; gap:10px; flex-wrap:wrap}
+  .number{font:700 clamp(18px,3vw,26px) "Courier New",monospace; letter-spacing:3px}
+  .pin{font:700 clamp(14px,2.2vw,18px) "Courier New",monospace}
+  .note{font-size:12px;color:var(--text-gray)}
+  /* Инфо‑панели */
+  .panels{display:grid; gap:18px}
+  @media(min-width:900px){ .panels{grid-template-columns:1fr 1fr} }
+  .panel{
+    background:#fff; border-radius:16px; padding:18px 20px;
+    box-shadow:0 12px 30px rgba(2,8,23,.06); border:1px solid #eef2ff;
+  }
+  .panel h2{margin:.2rem 0 .6rem; font-size:clamp(18px,2.2vw,22px); color:var(--primary-dark)}
+  .list{margin:.25rem 0 .25rem 0; padding-left:1.1rem}
+  .list li{margin:.35rem 0}
+  .muted{color:var(--text-gray)}
+  .actions{display:flex; gap:10px; flex-wrap:wrap}
+  .btn{
+    font-size:16px;font-weight:600;padding:12px 24px;border-radius:var(--radius-md);
+    border:none;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--primary-dark),var(--primary-blue));color:#fff}
+  .btn-secondary{background:#fff;color:var(--primary-dark);border:2px solid var(--support-blue)}
+  footer{color:var(--text-gray); font-size:14px; text-align:center; padding:6px}
+  /* Печать в PDF — компактно, без лишних разрывов */
+  @media print{
+    @page {
+      size: A4;
+      margin: 10mm;
+    }
+    body{ 
+      -webkit-print-color-adjust: exact; 
+      print-color-adjust: exact; 
+      background: white;
+      font-size: 9pt !important;
+      line-height: 1.2;
+    }
+    .page{ 
+      padding: 0;
+      max-width: 100%;
+      display: block;
+      gap: 8px;
+    }
+    header { 
+      margin-bottom: 6px;
+      padding: 12px 16px;
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    header .actions{ 
+      display:none;
+    }
+    a{ 
+      color:#000; 
+      text-decoration:none;
+    }
+    .stage {
+      padding: 8px;
+      margin-bottom: 6px;
+      page-break-after: auto;     /* ← ИЗМЕНЕНО */
+      break-after: auto;          /* ← ИЗМЕНЕНО */
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .card {
+      padding: 12px 16px;
+      margin-bottom: 0;
+      width: 85% !important;
+      max-width: 450px !important;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .panels {
+      page-break-after: auto;     /* ← ИЗМЕНЕНО */
+      break-after: auto;          /* ← ИЗМЕНЕНО */
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .panel {
+      padding: 12px 14px;
+      margin-bottom: 6px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .panel h2 {
+      font-size: 12pt !important;
+      margin: 0.1rem 0 0.3rem;
+    }
+    .list {
+      font-size: 8.5pt;
+      padding-left: 0.8rem;
+      line-height: 1.15;
+    }
+    .list li {
+      margin: 0.15rem 0;
+    }
+    .panel:last-of-type {
+      page-break-after: auto;
+      break-after: auto;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    html>body>footer:last-of-type,
+    footer {
+      display: none;
+    }
+    .bg {
+      display: none;
+    }
+    .brand { font-size: 16pt !important; }
+    .amount { font-size: 20pt !important; }
+    .number { font-size: 12pt !important; }
+    .pin { font-size: 10pt !important; }
+    .meta span {
+      font-size: 8pt !important;
+      padding: 4px 8px;
+    }
+    .card {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border: 1px solid #ccc;
+    }
+    .panel {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      border: 1px solid #ddd;
+    }
+    section {
+      margin-bottom: 2px;
+    }
+  }
+</style></head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Подарочная карта SOKOLOV</h1>
+      <div class="actions">
+        <span class="badge">Номинал: 5&nbsp;000&nbsp;₽</span>
+        <button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-file-pdf"></i>Печать / PDF</button>
+      </div>
+    </header>
+
+    <section class="stage" aria-label="Витрина с картой">
+      <div class="bg" aria-hidden="true">
+        <svg viewBox="0 0 1200 600" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#c7f9ff" />
+              <stop offset="100%" stop-color="#f2d5ff" />
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%" stop-color="#c5b8ff" />
+              <stop offset="100%" stop-color="#e0f7ff" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="250" cy="90" rx="340" ry="160" fill="url(#g1)" opacity=".75"/>
+          <ellipse cx="980" cy="40" rx="430" ry="190" fill="url(#g2)" opacity=".8"/>
+          <ellipse cx="930" cy="480" rx="380" ry="220" fill="url(#g1)" opacity=".7"/>
+          <ellipse cx="180" cy="520" rx="300" ry="190" fill="url(#g2)" opacity=".7"/>
+        </svg>
+      </div>
+
+      <article class="card" role="img" aria-label="Карта SOKOLOV, номинал 5 тысяч рублей">
+        <div class="card-top">
+          <div class="brand">SOKOLOV</div>
+          <div class="chip" aria-hidden="true"></div>
+        </div>
+
+        <div class="card-center">
+          <div class="amount">5&nbsp;000&nbsp;₽</div>
+          <div class="meta">
+            <span>Электронная подарочная карта</span>
+            <span>Доступна через 2 рабочих дня</span>
+          </div>
+        </div>
+
+        <div class="card-bottom">
+          <div class="number" title="Номер карты">2601&nbsp;0008&nbsp;7250&nbsp;5</div>
+          <div class="pin" title="ПИН">PIN: 936080</div>
+          <div class="note">Покажите номер и ПИН на кассе</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="panels">
+      <div class="panel">
+        <h2><i class="fa-solid fa-circle-question" style="color:var(--primary-blue)"></i>Как воспользоваться картой</h2>
+        <ol class="list">
+          <li>Покажите номер карты <b>2601000872505</b> и ПИН <b>936080</b> кассиру в магазине SOKOLOV.</li>
+          <li>Список магазинов, где принимают карты: <a href="https://sokolov.ru/gift-card/">sokolov.ru/gift-card/</a>.</li>
+          <li>Карта активируется и становится доступной через <b>2 рабочих дня</b> после покупки.</li>
+          <li>Если сумма покупки выше номинала, доплатите наличными, банковской картой или другой подарочной картой.</li>
+          <li>Оставшиеся средства возвращаются на бонусный счёт в виде бонусных рублей.</li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <h2><i class="fa-solid fa-receipt" style="color:var(--accent-cyan)"></i>Данные заказа</h2>
+        <ul class="list">
+          <li><b>Заказ:</b> 0112312426-0416</li>
+          <li><b>Код активации:</b> 2601000872505</li>
+          <li><b>PIN:</b> 936080</li>
+          <li><b>Товар:</b> Подарочная карта SOKOLOV на 5 000 ₽</li>
+          <li><b>Transaction ID:</b> 461-963-693-193</li>
+        </ul>
+        <p class="muted" style="margin-top:8px">Ссылка для активации: — (активация на кассе магазина).</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2><i class="fa-solid fa-scale-balanced" style="color:var(--accent-yellow)"></i>Условия использования</h2>
+      <ul class="list">
+        <li>В течение срока действия держатель может обменять карту на любой товар, имеющийся во флагманских магазинах SOKOLOV по актуальным ценам.</li>
+        <li>Допускается обмен товара на несколько подарочных карт, их номиналы суммируются.</li>
+        <li>Карта не является именной и не восстанавливается в случае утраты. Денежные средства не возвращаются.</li>
+        <li>Карта не подлежит возврату и обмену на деньги.</li>
+        <li>Возврат товаров, оплаченных картой полностью или частично, осуществляется в общем порядке, предусмотренном законодательством РФ.</li>
+        <li>По вопросам поддержки обращайтесь: <a href="mailto:support@sokolov.ru">support@sokolov.ru</a>.</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
